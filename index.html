@@ -1,273 +1,739 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panduan Lengkap Admin - Duta Muda Sidoarjo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>📘 Panduan Admin - Duta Muda Sidoarjo</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & VARIABEL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#f4f6f9;
-color:#333;
-line-height:1.6;
-}
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #ef233c;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --background: #f1f5f9;
+            --border: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.03);
+            --radius: 20px;
+            --radius-sm: 12px;
+        }
 
-header{
-background:#667eea;
-color:white;
-padding:25px;
-text-align:center;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--dark);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-.container{
-max-width:1000px;
-margin:auto;
-background:white;
-padding:30px;
-}
+        /* HEADER FIXED DENGAN SHADOW */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 1.25rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.25);
+            width: 100%;
+        }
 
-h1,h2,h3{
-margin-top:25px;
-}
+        .app-header h1 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-.step{
-background:#eef2ff;
-padding:15px;
-border-left:5px solid #667eea;
-margin:10px 0;
-}
+        .app-header h1 i {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
 
-.card{
-background:#f9f9f9;
-padding:20px;
-border-radius:8px;
-margin:15px 0;
-}
+        .app-header p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 0.15rem;
+            font-weight: 300;
+        }
 
-ul{
-padding-left:20px;
-}
+        /* LAYOUT UTAMA - MOBILE FIRST */
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-height: calc(100vh - 73px);
+            background-color: var(--background);
+            position: relative;
+        }
 
-.warning{
-background:#fff3cd;
-padding:15px;
-border-left:5px solid orange;
-margin:10px 0;
-}
+        /* SIDEBAR NAVIGASI - MOBILE FRIENDLY */
+        .nav-sidebar {
+            background-color: white;
+            width: 100%;
+            padding: 1.25rem 1rem;
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
 
-footer{
-text-align:center;
-padding:20px;
-color:#777;
-font-size:14px;
-}
-</style>
+        .nav-sidebar h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            border-left: 4px solid var(--primary);
+            font-weight: 600;
+        }
 
+        .nav-sidebar ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.5rem;
+        }
+
+        .nav-sidebar li {
+            flex: 1 1 auto;
+            min-width: calc(50% - 0.25rem);
+        }
+
+        .nav-sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.75rem;
+            text-decoration: none;
+            color: var(--dark);
+            background-color: var(--light);
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-sidebar a i {
+            font-size: 0.9rem;
+            min-width: 16px;
+            color: var(--primary);
+        }
+
+        .nav-sidebar a:hover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 12px rgba(67, 97, 238, 0.2);
+        }
+
+        .nav-sidebar a:hover i {
+            color: white;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            padding: 0 1rem 1.5rem 1rem;
+            width: 100%;
+        }
+
+        /* SECTION CARD */
+        .guide-section {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 1.5rem 1.25rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+
+        .guide-section:active {
+            transform: scale(0.99);
+        }
+
+        .guide-section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
+
+        .guide-section h2 i {
+            font-size: 1.4rem;
+            color: var(--primary);
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            padding: 0.5rem;
+            border-radius: 12px;
+        }
+
+        /* STEP BOX */
+        .step-box {
+            background-color: var(--light);
+            border-left: 5px solid var(--primary);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem 1rem;
+            margin: 1.25rem 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .step-item {
+            display: flex;
+            gap: 0.85rem;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            color: var(--dark);
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        /* MOCKUP SCREENSHOT */
+        .mockup-screenshot {
+            background: linear-gradient(145deg, #eef2f6, #e2e8f0);
+            border: 3px dashed var(--border);
+            border-radius: 24px;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            color: var(--gray);
+            font-weight: 500;
+            margin: 1.25rem 0;
+            box-shadow: inset 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .mockup-screenshot i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            opacity: 0.6;
+        }
+
+        .mockup-screenshot small {
+            font-size: 0.7rem;
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--gray);
+        }
+
+        /* INFO NOTES */
+        .important-note {
+            background-color: #fff3cd;
+            border-left: 5px solid var(--warning);
+            padding: 1.2rem 1rem;
+            border-radius: var(--radius-sm);
+            margin: 1.25rem 0;
+            color: #856404;
+        }
+
+        .tip-note {
+            background-color: #d1ecf1;
+            border-left: 5px solid var(--success);
+            padding: 1.2rem 1rem;
+            border-radius: var(--radius-sm);
+            margin: 1.25rem 0;
+            color: #0c5460;
+        }
+
+        .danger-note {
+            background-color: #f8d7da;
+            border-left: 5px solid var(--danger);
+            padding: 1.2rem 1rem;
+            border-radius: var(--radius-sm);
+            margin: 1.25rem 0;
+            color: #721c24;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .badge i {
+            font-size: 0.7rem;
+            color: var(--gray);
+        }
+
+        .badge-blue {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+        }
+        .badge-blue i { color: white; }
+
+        .badge-green {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+        }
+
+        .badge-yellow {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+        }
+
+        .badge-red {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid var(--border);
+            margin: 1.75rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem 0.5rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        footer i {
+            color: var(--accent);
+        }
+
+        /* UL / LI STYLING */
+        ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* TABEL RESPONSIF */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1.25rem 0;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background-color: var(--light);
+            font-weight: 600;
+            padding: 0.75rem 0.5rem;
+            text-align: left;
+        }
+
+        td {
+            padding: 0.75rem 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* 320px OPTIMIZATION */
+        @media (max-width: 360px) {
+            .nav-sidebar ul li {
+                min-width: 100%;
+            }
+
+            .nav-sidebar a {
+                white-space: normal;
+                word-break: break-word;
+            }
+
+            .guide-section h2 {
+                font-size: 1.2rem;
+                flex-wrap: wrap;
+            }
+
+            .step-item {
+                gap: 0.6rem;
+            }
+
+            .step-text {
+                font-size: 0.85rem;
+            }
+
+            .badge {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+            }
+        }
+
+        /* UNTUK LAYAR > 768px (TABLET/DESKTOP) - TIDAK DIGUNAKAN DI 320px TAPI TETAP DIBAWAH */
+        @media (min-width: 768px) {
+            .app-container {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+
+            .nav-sidebar {
+                width: 280px;
+                position: sticky;
+                top: 90px;
+                border-radius: var(--radius);
+                margin-left: 1.5rem;
+                padding: 1.5rem;
+                height: fit-content;
+            }
+
+            .nav-sidebar ul {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .nav-sidebar li {
+                min-width: 100%;
+            }
+
+            .nav-sidebar a {
+                border-radius: 12px;
+                white-space: normal;
+                background: white;
+            }
+
+            .main-content {
+                padding: 0 2rem 2rem 0;
+            }
+        }
+
+        /* SCROLL HALUS */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* HIDE SIDEBAR SCROLLBAR DI MOBILE */
+        .nav-sidebar {
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
 </head>
-
 <body>
+    <!-- HEADER DENGAN IKON -->
+    <header class="app-header">
+        <h1>
+            <i class="fas fa-book-open"></i> 
+            Panduan Admin
+        </h1>
+        <p><i class="fas fa-user-check"></i> Duta Muda Sidoarjo • Untuk Admin Non-Teknis</p>
+    </header>
 
-<header>
-<h1>Panduan Lengkap Admin</h1>
-<p>Sistem Duta Muda Sidoarjo</p>
-</header>
+    <div class="app-container">
+        <!-- NAVIGASI SIDEBAR (RESPONSIF) -->
+        <nav class="nav-sidebar">
+            <h3><i class="fas fa-compass"></i> Menu Cepat</h3>
+            <ul>
+                <li><a href="#login"><i class="fas fa-lock"></i> Login</a></li>
+                <li><a href="#dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+                <li><a href="#pendaftaran"><i class="fas fa-users"></i> Pendaftaran</a></li>
+                <li><a href="#program"><i class="fas fa-calendar-alt"></i> Program</a></li>
+                <li><a href="#berita"><i class="fas fa-newspaper"></i> Berita</a></li>
+                <li><a href="#prestasi"><i class="fas fa-trophy"></i> Prestasi</a></li>
+                <li><a href="#galeri"><i class="fas fa-images"></i> Galeri</a></li>
+                <li><a href="#testimoni"><i class="fas fa-comment-dots"></i> Testimoni</a></li>
+                <li><a href="#reels"><i class="fab fa-instagram"></i> Reels</a></li>
+                <li><a href="#partners"><i class="fas fa-handshake"></i> Partners</a></li>
+                <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="#timeline"><i class="fas fa-clock"></i> Timeline</a></li>
+                <li><a href="#stats"><i class="fas fa-chart-bar"></i> Statistik</a></li>
+                <li><a href="#hero"><i class="fas fa-star"></i> Hero Section</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                <li><a href="#users"><i class="fas fa-user-shield"></i> Users</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Pengaturan</a></li>
+                <li><a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
 
-<div class="container">
+        <!-- KONTEN UTAMA -->
+        <main class="main-content">
 
-<h2>1. LOGIN ADMIN</h2>
+            <!-- 1. LOGIN -->
+            <section id="login" class="guide-section">
+                <h2><i class="fas fa-lock"></i> 1. Login Admin</h2>
+                <div class="step-box">
+                    <div class="step-item">
+                        <span class="step-number">1</span>
+                        <span class="step-text">Buka browser, ketik: <strong>namasite.com/admin/</strong></span>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">2</span>
+                        <span class="step-text">Masukkan Username & Password</span>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number">3</span>
+                        <span class="step-text">Klik <span class="badge badge-blue"><i class="fas fa-sign-in-alt"></i> Login</span></span>
+                    </div>
+                </div>
+                <div class="mockup-screenshot">
+                    <i class="fas fa-laptop"></i>
+                    [HALAMAN LOGIN]
+                    <small>Ganti dengan screenshot asli</small>
+                </div>
+                <div class="important-note">
+                    <i class="fas fa-exclamation-triangle"></i> Lupa password? Hubungi Superadmin.
+                </div>
+            </section>
 
-<div class="step">
-Buka link berikut:<br>
-<b>https://dutamudasidoarjo.my.id/admin/login.php</b>
-</div>
+            <!-- 2. DASHBOARD -->
+            <section id="dashboard" class="guide-section">
+                <h2><i class="fas fa-chart-pie"></i> 2. Dashboard</h2>
+                <p>Pusat kendali utama dengan ringkasan data dan akses cepat.</p>
+                <div class="mockup-screenshot">
+                    <i class="fas fa-chart-line"></i>
+                    [TAMPILAN DASHBOARD]
+                </div>
+            </section>
 
-<div class="step">
-Masukkan akun:
-<br><br>
-Username : <b>administrator@dms</b><br>
-Password : <b>dms_4dministr4t0r</b>
-</div>
+            <!-- 3. PENDAFTARAN -->
+            <section id="pendaftaran" class="guide-section">
+                <h2><i class="fas fa-users"></i> 3. Pendaftaran</h2>
+                <p>Kelola data peserta.</p>
+                <div class="step-box">
+                    <h3><i class="fas fa-plus-circle" style="color:var(--primary)"></i> Menambah:</h3>
+                    <div class="step-item"><span class="step-number">1</span><span class="step-text">Klik <span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Baru</span></span></div>
+                    <div class="step-item"><span class="step-number">2</span><span class="step-text">Isi formulir (Nama, Email, Telepon)</span></div>
+                    <div class="step-item"><span class="step-number">3</span><span class="step-text">Klik <span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+                </div>
+                <div class="step-box">
+                    <h3><i class="fas fa-edit"></i> Edit / Hapus:</h3>
+                    <div class="step-item"><span class="step-number">1</span><span class="step-text">Cari data, klik ikon <i class="fas fa-edit" style="color:#f59e0b"></i> (Edit) atau <i class="fas fa-trash" style="color:#ef4444"></i> (Hapus)</span></div>
+                </div>
+                <div class="danger-note">
+                    <i class="fas fa-trash-alt"></i> Data yang dihapus tidak bisa dikembalikan.
+                </div>
+            </section>
 
-<div class="step">
-Klik tombol <b>Login</b> → akan otomatis masuk ke Dashboard
-</div>
+            <!-- 4. PROGRAM -->
+            <section id="program" class="guide-section">
+                <h2><i class="fas fa-calendar-alt"></i> 4. Program</h2>
+                <p>Tambah program unggulan.</p>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text">Klik <span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Program</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Isi nama, pilih ikon <i class="fas fa-icons"></i> (klik tombol "Pilih Icon")</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text">Atur status <i class="fas fa-toggle-on"></i> Aktif/Tidak Aktif</span></div>
+                <div class="step-item"><span class="step-number">4</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+                <div class="tip-note">
+                    <i class="fas fa-sort-numeric-down"></i> Urutan: makin kecil angka, makin atas tampilannya.
+                </div>
+            </section>
 
-<div class="warning">
-Jika gagal login:
-<ul>
-<li>Periksa penulisan username/password</li>
-<li>Perhatikan huruf besar kecil</li>
-<li>Coba ulang kembali</li>
-</ul>
-</div>
+            <!-- 5. BERITA -->
+            <section id="berita" class="guide-section">
+                <h2><i class="fas fa-newspaper"></i> 5. Berita</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Berita</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Upload foto, tulis judul dan isi berita (gunakan editor teks)</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text">Pilih status: <i class="fas fa-globe"></i> Published / <i class="fas fa-pen"></i> Draft</span></div>
+                <div class="step-item"><span class="step-number">4</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+            </section>
 
----
+            <!-- 6. PRESTASI -->
+            <section id="prestasi" class="guide-section">
+                <h2><i class="fas fa-trophy"></i> 6. Prestasi</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Prestasi</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Isi nama penerima, prestasi, tahun, upload foto</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+            </section>
 
-<h2>2. DASHBOARD</h2>
+            <!-- 7. GALERI -->
+            <section id="galeri" class="guide-section">
+                <h2><i class="fas fa-images"></i> 7. Galeri Foto</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Foto</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Pilih file, beri judul, pilih kategori</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+            </section>
 
-Dashboard adalah halaman utama setelah login.
+            <!-- 8. TESTIMONI -->
+            <section id="testimoni" class="guide-section">
+                <h2><i class="fas fa-comment-dots"></i> 8. Testimoni</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Testimoni</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Isi nama, role, angkatan, testimoni, rating bintang <i class="fas fa-star" style="color:gold"></i></span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text">Upload foto profil (opsional)</span></div>
+                <div class="step-item"><span class="step-number">4</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+            </section>
 
-Fungsi:
+            <!-- 9. REELS INSTAGRAM -->
+            <section id="reels" class="guide-section">
+                <h2><i class="fab fa-instagram"></i> 9. Instagram Reels</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Reels</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Masukkan <strong>URL Reels</strong> (contoh: instagram.com/reel/xxxxx/)</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+            </section>
 
-<ul>
-<li>Melihat jumlah data</li>
-<li>Akses menu cepat</li>
-<li>Melihat ringkasan sistem</li>
-</ul>
+            <!-- 10. PARTNERS -->
+            <section id="partners" class="guide-section">
+                <h2><i class="fas fa-handshake"></i> 10. Partners</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Partner</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Isi nama, upload logo, masukkan website (opsional)</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+            </section>
 
----
+            <!-- 11. FAQ -->
+            <section id="faq" class="guide-section">
+                <h2><i class="fas fa-question-circle"></i> 11. FAQ</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah FAQ</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Isi pertanyaan dan jawaban (bisa diformat tebal/miring)</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text">Atur urutan tampil</span></div>
+                <div class="step-item"><span class="step-number">4</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+            </section>
 
-<h2>3. AKSI CEPAT</h2>
+            <!-- 12. TIMELINE -->
+            <section id="timeline" class="guide-section">
+                <h2><i class="fas fa-clock"></i> 12. Timeline</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Timeline</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Pilih tanggal mulai & selesai, isi judul dan deskripsi</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+                <p><i class="fas fa-info-circle"></i> Status (Akan Datang/Berlangsung/Selesai) otomatis.</p>
+            </section>
 
-Klik tombol untuk langsung menambah data:
+            <!-- 13. STATISTIK -->
+            <section id="stats" class="guide-section">
+                <h2><i class="fas fa-chart-bar"></i> 13. Statistik</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Statistik</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Isi label (misal "Peserta") dan nilai angkanya</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text">Pilih ikon yang sesuai</span></div>
+                <div class="step-item"><span class="step-number">4</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+            </section>
 
-<ul>
-<li>Tambah Pendaftar</li>
-<li>Tambah Program</li>
-<li>Tulis Berita</li>
-<li>Upload Foto</li>
-<li>Tambah Prestasi</li>
-<li>Tambah Testimoni</li>
-<li>Tambah Reels</li>
-<li>Tambah Admin</li>
-</ul>
+            <!-- 14. HERO SECTION -->
+            <section id="hero" class="guide-section">
+                <h2><i class="fas fa-star"></i> 14. Hero Section</h2>
+                <div class="step-box">
+                    <div class="step-item"><span class="step-number">1</span><span class="step-text">Di sidebar, klik <b>Hero Section</b></span></div>
+                    <div class="step-item"><span class="step-number">2</span><span class="step-text">Ubah teks badge, judul, subtitle, deskripsi</span></div>
+                    <div class="step-item"><span class="step-number">3</span><span class="step-text">Pilih ikon badge dengan tombol <i class="fas fa-icons"></i> Pilih Icon</span></div>
+                    <div class="step-item"><span class="step-number">4</span><span class="step-text">Lihat pratinjau langsung di bawah form</span></div>
+                    <div class="step-item"><span class="step-number">5</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan Perubahan</span></span></div>
+                </div>
+            </section>
 
----
+            <!-- 15. TENTANG KAMI -->
+            <section id="about" class="guide-section">
+                <h2><i class="fas fa-info-circle"></i> 15. Halaman Tentang</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text">Klik <b>Tentang Kami</b> di sidebar</span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Edit semua bagian: header, overview, nilai-nilai, visi misi</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text">Pilih ikon untuk setiap bagian dengan tombol <i class="fas fa-icons"></i></span></div>
+                <div class="step-item"><span class="step-number">4</span><span class="step-text">Gulir ke bawah untuk melihat pratinjau</span></div>
+                <div class="step-item"><span class="step-number">5</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span> atau <span class="badge badge-yellow"><i class="fas fa-undo"></i> Reset ke Default</span></span></div>
+            </section>
 
-<h2>4. CARA MENAMBAH DATA (UMUM)</h2>
+            <!-- 16. USERS (ADMIN) -->
+            <section id="users" class="guide-section">
+                <h2><i class="fas fa-user-shield"></i> 16. Kelola Users</h2>
+                <div class="badge" style="background:#fef9c3;"><i class="fas fa-lock"></i> Khusus Superadmin</div>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text"><span class="badge badge-green"><i class="fas fa-plus"></i> Tambah Admin</span></span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Isi username, nama, email, password, pilih role (Admin/Superadmin)</span></div>
+                <div class="step-item"><span class="step-number">3</span><span class="step-text"><span class="badge badge-blue"><i class="fas fa-save"></i> Simpan</span></span></div>
+                <div class="danger-note">
+                    <i class="fas fa-exclamation-circle"></i> Tidak bisa menghapus akun sendiri.
+                </div>
+            </section>
 
-<div class="step">
-1. Klik menu atau tombol "Tambah"
-</div>
+            <!-- 17. PENGATURAN -->
+            <section id="settings" class="guide-section">
+                <h2><i class="fas fa-cog"></i> 17. Pengaturan</h2>
+                <p><span class="badge" style="background:#fef9c3;"><i class="fas fa-lock"></i> Superadmin</span></p>
+                <ul>
+                    <li><i class="fas fa-globe"></i> <b>Umum</b>: Nama website, kontak, SEO</li>
+                    <li><i class="fas fa-image"></i> <b>Logo & Favicon</b>: Upload logo</li>
+                    <li><i class="fas fa-share-alt"></i> <b>Sosial Media</b>: Link Instagram, FB, dll</li>
+                    <li><i class="fas fa-key"></i> <b>Ubah Password</b>: Ganti password sendiri</li>
+                    <li><i class="fas fa-tools"></i> <b>Lanjutan</b>: Backup database, bersihkan cache</li>
+                </ul>
+            </section>
 
-<div class="step">
-2. Isi semua form yang tersedia
-</div>
+            <!-- 18. LOGOUT -->
+            <section id="logout" class="guide-section">
+                <h2><i class="fas fa-sign-out-alt"></i> 18. Logout</h2>
+                <div class="step-item"><span class="step-number">1</span><span class="step-text">Klik tombol <span class="badge badge-red"><i class="fas fa-sign-out-alt"></i> Logout</span> di pojok kanan atas</span></div>
+                <div class="step-item"><span class="step-number">2</span><span class="step-text">Konfirmasi dengan klik OK</span></div>
+                <div class="important-note">
+                    <i class="fas fa-shield-alt"></i> Selalu logout setelah selesai, terutama di perangkat publik.
+                </div>
+            </section>
 
-<div class="step">
-3. Klik tombol <b>Simpan</b>
-</div>
+            <!-- TIPS TERAKHIR -->
+            <section class="guide-section">
+                <h2><i class="fas fa-lightbulb"></i> Tips untuk Admin</h2>
+                <div class="tip-note">
+                    <i class="fas fa-check-circle" style="color:var(--success)"></i> Gunakan fitur pratinjau sebelum menyimpan.<br>
+                    <i class="fas fa-check-circle" style="color:var(--success)"></i> Pastikan foto sesuai rasio yang dianjurkan.<br>
+                    <i class="fas fa-check-circle" style="color:var(--success)"></i> Jangan bagikan password ke siapapun.<br>
+                    <i class="fas fa-check-circle" style="color:var(--success)"></i> Hubungi tim teknis jika ada kendala.
+                </div>
+            </section>
 
-<div class="step">
-4. Data akan masuk ke sistem
-</div>
-
-<div class="warning">
-Pastikan data sudah benar sebelum disimpan!
-</div>
-
----
-
-<h2>5. CARA EDIT DATA</h2>
-
-<div class="step">
-1. Masuk ke menu data (misal: Program / Berita)
-</div>
-
-<div class="step">
-2. Cari data yang ingin diubah
-</div>
-
-<div class="step">
-3. Klik tombol <b>Edit</b>
-</div>
-
-<div class="step">
-4. Ubah data sesuai kebutuhan
-</div>
-
-<div class="step">
-5. Klik <b>Update / Simpan</b>
-</div>
-
----
-
-<h2>6. CARA HAPUS DATA</h2>
-
-<div class="step">
-1. Masuk ke menu data
-</div>
-
-<div class="step">
-2. Cari data yang ingin dihapus
-</div>
-
-<div class="step">
-3. Klik tombol <b>Hapus</b>
-</div>
-
-<div class="step">
-4. Klik <b>OK / Konfirmasi</b>
-</div>
-
-<div class="warning">
-Data yang dihapus tidak bisa dikembalikan!
-</div>
-
----
-
-<h2>7. PENJELASAN MENU</h2>
-
-<h3>Pendaftaran</h3>
-Mengelola data peserta
-
-<h3>Program</h3>
-Mengelola kegiatan
-
-<h3>Berita</h3>
-Mengelola artikel
-
-<h3>Galeri</h3>
-Upload foto kegiatan
-
-<h3>Prestasi</h3>
-Menampilkan pencapaian
-
-<h3>Testimoni</h3>
-Menampilkan pengalaman peserta
-
-<h3>Reels</h3>
-Menampilkan video
-
-<h3>Partners</h3>
-Mengatur sponsor
-
-<h3>FAQ</h3>
-Mengatur pertanyaan umum
-
-<h3>Timeline</h3>
-Mengatur jadwal
-
-<h3>Users</h3>
-Mengatur akun admin
-
----
-
-<h2>8. LOGOUT</h2>
-
-<div class="step">
-Klik tombol <b>Logout</b> di pojok kanan atas
-</div>
-
----
-
-<h2>9. TIPS PENTING</h2>
-
-<ul>
-<li>Selalu cek data sebelum simpan</li>
-<li>Gunakan bahasa yang rapi</li>
-<li>Jangan hapus data penting sembarangan</li>
-<li>Logout setelah selesai</li>
-</ul>
-
-</div>
-
-<footer>
-Panduan Admin Duta Muda Sidoarjo © 2026
-</footer>
-
+            <footer>
+                <p><i class="fas fa-heart" style="color:var(--accent)"></i> Duta Muda Sidoarjo | Panduan Admin v2.0</p>
+                <p style="font-size:0.7rem;">© 2024 All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
 </body>
 </html>
